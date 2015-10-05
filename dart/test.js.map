@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "test.js",
+  "sourceRoot": "",
+  "sources": ["/usr/lib/dart/lib/_internal/js_runtime/lib/js_primitives.dart","test.dart","/usr/lib/dart/lib/_internal/js_runtime/lib/internal_patch.dart","/usr/lib/dart/lib/core/print.dart"],
+  "names": ["printString","main","printToConsole","print"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;iBAoBAA;MACEA,IAAIA,8B;QAEFA;QACAA;;MAIFA,IAAIA,8BACAA;QACFA;QACAA;;MAIFA,IAAIA;QACFA;MAIFA,IAAIA;QACFA;QACAA;;MAMFA;KACFA;;;UCjDAC;MCiBEC,cCTgBC;KFNlBF"
+}
