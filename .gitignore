@@ -1,4 +1,16 @@
+c/clang-test
+c/gcc-test
+d/test
+go/test
+haskell/Test
+icon/test
 haxe/haxe-3.2.0
 haxe/haxe320.tar.gz
+lua/test.luac
+ocaml/test
+ocaml/test.cmi
+ocaml/test.cmo
+rust/main
+rust/test
 scala/scala-2.11.7
 scala/scala-2.11.7.tar

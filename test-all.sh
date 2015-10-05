@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 ################################################################################
-# Test all language tests
+# Test all the things!
+#
+# I've created this script to run through all of the compilers and interpreters
+# that I use on my system. There are so many that it is more practical to cycle
+# through them all using this script than to spot check everything. While the
+# actual code I run is stored in other directories, these small hello-world
+# scripts at least serve to show that the compiler and/or interpreter is up
+# and ready to execute.
+#
+# Obviously, your system won't be set up just like mine, so you can't just run
+# this as-is and get the same results I do. I'm more than happy to chat about
+# my setup and help you get yours working if you're interested. You can reach
+# me at http://davidcanhelp.me/
+#
+# See https://github.com/macdaddy/polyglot-test
+#
 
 echo "--> Testing C with gcc..."
 /usr/bin/gcc /root/sandbox/lang/c/test.c -o /root/sandbox/lang/c/gcc-test
