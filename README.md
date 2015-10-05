@@ -32,7 +32,7 @@ Well... *I* use the script by executing `/root/sandbox/lang/test-all.sh`, but th
 because that BASH script is specifically written for my specific environment.
 
 ## Environment
-I'm running all of this on a $10/month [https://www.digitalocean.com/?refcode=b691120bf5f9](DigitalOcean) Droplet
+I'm running all of this on a $10/month [DigitalOcean](https://www.digitalocean.com/?refcode=b691120bf5f9) Droplet
 with Ubuntu 15.04. A lot of these are either languages that I installed with apt-get or they existed on the droplet
 already. Some were custom installed, and a couple (Haxe, Scala) were simply `tar xvf`'d right into
 the directory in which I'm running the test.
