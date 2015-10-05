@@ -2,6 +2,7 @@ c/clang-test
 c/gcc-test
 d/test
 d/test.o
+erlang/test.beam
 go/test
 haskell/Test
 haxe/haxe-3.2.0
