@@ -1,11 +1,12 @@
 c/clang-test
 c/gcc-test
 d/test
+d/test.o
 go/test
 haskell/Test
-icon/test
 haxe/haxe-3.2.0
 haxe/haxe320.tar.gz
+icon/test
 lua/test.luac
 ocaml/test
 ocaml/test.cmi
