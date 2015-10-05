@@ -41,7 +41,7 @@ which I'm running the test.
 I'm planning to change the paths to be variables, making it a bit more portable. I may do something
 with Chef to spread the love, and a Docker image would make a lot of sense. If you're interested in
 getting all of these languages working together on your system as I have on mine, feel free to reach
-out to me at (DavidCanHelp.me)[http://davidcanhelp.me/]
+out to me at [DavidCanHelp.me](http://davidcanhelp.me/)
 
 ## Why?
 Because it's there.
