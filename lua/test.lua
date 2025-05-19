@@ -1,2 +1,4 @@
--- A test program to run lua code
+-- Verifies that the Lua interpreter runs.
 print("Hello from Lua!")
+
+-- Run with: lua test.lua

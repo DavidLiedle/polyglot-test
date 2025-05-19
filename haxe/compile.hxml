@@ -1,3 +1,6 @@
+# Build script for Haxe
 
--main Test
--x Test
+-main Test  # entry point
+-x Test     # compile to Neko binary "Test"
+
+# Run with: haxe compile.hxml

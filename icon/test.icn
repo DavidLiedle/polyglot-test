@@ -1,3 +1,7 @@
+# Verifies that the Icon compiler runs.
+
 procedure main()
-		write( "Hello from Icon!" );
+  write("Hello from Icon!")  # prints a line
 end
+
+# Compile with: icont -s test.icn && ./test

@@ -1,5 +1,9 @@
-import std.stdio;
+import std.stdio; // basic I/O
 
-void main(){
-  writeln("Hello from D!");
+// Verifies that the D compiler runs.
+
+void main() {
+  writeln("Hello from D!"); // print with newline
 }
+
+// Compile with: dmd test.d && ./test
