@@ -1,0 +1,9 @@
+version: '3'
+services:
+  polyglot:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - LANG_ROOT=/app
+    command: ["/app/test-all.sh"]
