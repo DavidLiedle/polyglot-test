@@ -28,8 +28,26 @@ A script I use on my server to test ALL the things.
 By virtue of the fact that the test script is in BASH, that's being automatically tested as well.
 
 ## Usage
-Well... *I* use the script by executing `/root/sandbox/lang/test-all.sh`, but that only works
-because that BASH script is specifically written for my specific environment.
+Execute `test-all.sh` from the repository root. By default the script expects
+all compilers and interpreters to be available on your `PATH`. Paths can be
+customised via environment variables. For example:
+
+```
+LANG_ROOT=/opt/polyglot C_GCC=/usr/local/bin/gcc ./test-all.sh
+```
+
+### Docker
+If you have Docker and docker-compose installed you can build an environment
+with all toolchains using:
+
+```
+docker-compose build
+docker-compose run --rm polyglot
+```
+
+The Dockerfile installs most compilers using `apt`. HHVM is added from its
+official repository and Io is built from source so the test script works out of
+the box.
 
 ## Environment
 I'm running all of this on a $10/month [DigitalOcean](https://www.digitalocean.com/?refcode=b691120bf5f9) Droplet

@@ -17,129 +17,170 @@
 # See https://github.com/macdaddy/polyglot-test
 #
 
+set -e
+
+# Root directory containing the language subdirectories. Can be overridden by
+# setting LANG_ROOT before invoking this script.
+ROOT_DIR="${LANG_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
+
+# Compiler/interpreter commands. Each can be overridden via environment
+# variables. Defaults assume a typical Linux installation with the tools
+# available on the PATH.
+: "${C_GCC:=gcc}"
+: "${C_CLANG:=clang}"
+: "${CLOJURE:=clojure}"
+: "${COFFEE:=coffee}"
+: "${NODE:=node}"
+: "${DMD:=dmd}"
+: "${DART:=dart}"
+: "${DART2JS:=dart2js}"
+: "${ERLC:=erlc}"
+: "${ERL:=erl}"
+: "${GO:=go}"
+: "${HHVM:=hhvm}"
+: "${GHC:=ghc}"
+: "${HAXE:=haxe}"
+: "${ICONT:=icont}"
+: "${ICONX:=iconx}"
+: "${IO:=io}"
+: "${JAVAC:=javac}"
+: "${JAVA:=java}"
+: "${LUA:=lua}"
+: "${LUAC:=luac}"
+: "${OCAMLC:=ocamlc}"
+: "${OCAML:=ocaml}"
+: "${PERL:=perl}"
+: "${PHP:=php}"
+: "${PYTHON:=python}"
+: "${PYTHON3:=python3}"
+: "${RUBY:=ruby}"
+: "${RUSTC:=rustc}"
+: "${SCALAC:=scalac}"
+: "${SCALA:=scala}"
+
 echo "--> Testing C with gcc..."
-/usr/bin/gcc /root/sandbox/lang/c/test.c -o /root/sandbox/lang/c/gcc-test
-/root/sandbox/lang/c/gcc-test
+$C_GCC "$ROOT_DIR/c/test.c" -o "$ROOT_DIR/c/gcc-test"
+"$ROOT_DIR/c/gcc-test"
 echo "--> Testing C with clang..."
-/usr/bin/clang /root/sandbox/lang/c/test.c -o /root/sandbox/lang/c/clang-test
-/root/sandbox/lang/c/clang-test
+$C_CLANG "$ROOT_DIR/c/test.c" -o "$ROOT_DIR/c/clang-test"
+"$ROOT_DIR/c/clang-test"
 
 echo "--> Testing Clojure..."
-/usr/bin/clojure /root/sandbox/lang/clojure/test.clj
+$CLOJURE "$ROOT_DIR/clojure/test.clj"
 
 echo "--> Testing Coffee-Script..."
 echo "-> Compiling to JS..."
-/root/.nvm/versions/node/v0.12.7/bin/coffee --compile /root/sandbox/lang/coffeescript/test.coffee
-/root/.nvm/versions/node/v0.12.7/bin/node /root/sandbox/lang/coffeescript/test.js
+$COFFEE --compile "$ROOT_DIR/coffeescript/test.coffee"
+$NODE "$ROOT_DIR/coffeescript/test.js"
 echo "-> Running interpreted..."
-/root/.nvm/versions/node/v0.12.7/bin/coffee /root/sandbox/lang/coffeescript/test.coffee
+$COFFEE "$ROOT_DIR/coffeescript/test.coffee"
 
 echo "--> Testing D with dmd..."
-cd /root/sandbox/lang/d/
-/usr/bin/dmd /root/sandbox/lang/d/test.d
-/root/sandbox/lang/d/test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/d/"
+$DMD "$ROOT_DIR/d/test.d"
+"$ROOT_DIR/d/test"
+cd "$ROOT_DIR"
 
 echo "--> Testing Dart interpreted..."
-/usr/bin/dart /root/sandbox/lang/dart/test.dart
+$DART "$ROOT_DIR/dart/test.dart"
 echo "--> Testing Dart2JS with node..."
-/usr/lib/dart/bin/dart2js --out=/root/sandbox/lang/dart/test.js /root/sandbox/lang/dart/test.dart
-/root/.nvm/versions/node/v0.12.7/bin/node /root/sandbox/lang/dart/test.js
+$DART2JS --out="$ROOT_DIR/dart/test.js" "$ROOT_DIR/dart/test.dart"
+$NODE "$ROOT_DIR/dart/test.js"
 
 echo "--> Testing Erlang..."
-/usr/bin/erlc -o /root/sandbox/lang/erlang/ /root/sandbox/lang/erlang/test.erl
-cd /root/sandbox/lang/erlang/
-/usr/bin/erl -noshell -s test start -s init stop
-cd /root/sandbox/lang/
+$ERLC -o "$ROOT_DIR/erlang/" "$ROOT_DIR/erlang/test.erl"
+cd "$ROOT_DIR/erlang/"
+$ERL -noshell -s test start -s init stop
+cd "$ROOT_DIR"
 
 echo "--> Testing Go..."
 echo "-> interpreted..."
-/usr/local/go/bin/go run /root/sandbox/lang/go/test.go
+$GO run "$ROOT_DIR/go/test.go"
 echo "-> compiled..."
-cd /root/sandbox/lang/go/
-/usr/local/go/bin/go build /root/sandbox/lang/go/test.go
-/root/sandbox/lang/go/test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/go/"
+$GO build "$ROOT_DIR/go/test.go"
+"$ROOT_DIR/go/test"
+cd "$ROOT_DIR"
 
 echo "--> Testing Hack with HHVM..."
 # if -f .hhconfig in its directory, OK
-/usr/bin/hhvm /root/sandbox/lang/hack/test.hh
+$HHVM "$ROOT_DIR/hack/test.hh"
 
 echo "--> Testing Haskell with ghc..."
-/usr/bin/ghc -w -O2 /root/sandbox/lang/haskell/Test.hs
-/root/sandbox/lang/haskell/Test
+$GHC -w -O2 "$ROOT_DIR/haskell/Test.hs"
+"$ROOT_DIR/haskell/Test"
 
 echo "--> Testing Haxe..."
 #echo "HAXE NEEDS MORE WORK"
 # http://im.discoveringhaxe.com/discovery/discovering-how-to-install-haxe-on-ubuntu-14-04/
 # http://old.haxe.org/doc/build/haxe_ubuntu_build
-cd /root/sandbox/lang/haxe/
-/root/sandbox/lang/haxe/haxe-3.2.0/haxe /root/sandbox/lang/haxe/compile.hxml
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/haxe/"
+$HAXE "$ROOT_DIR/haxe/compile.hxml"
+cd "$ROOT_DIR"
 
 echo "--> Testing Icon with icont..."
-cd /root/sandbox/lang/icon/
-/usr/bin/icont -s test
-/root/sandbox/lang/icon/test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/icon/"
+$ICONT -s test
+"$ROOT_DIR/icon/test"
+cd "$ROOT_DIR"
 
 echo "--> Testing Icon with iconx..."
-cd /root/sandbox/lang/icon/
-/usr/bin/iconx test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/icon/"
+$ICONX test
+cd "$ROOT_DIR"
 
 echo "--> Testing Io..."
-/usr/local/bin/io /root/sandbox/lang/io/test.io
+$IO "$ROOT_DIR/io/test.io"
 
 echo "--> Testing Java..."
-cd /root/sandbox/lang/java/
-/usr/bin/javac /root/sandbox/lang/java/Test.java
-/usr/bin/java Test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/java/"
+$JAVAC "$ROOT_DIR/java/Test.java"
+$JAVA Test
+cd "$ROOT_DIR"
 
 echo "--> Testing JavaScript with node.js..."
-/root/.nvm/versions/node/v0.12.7/bin/node /root/sandbox/lang/javascript/test.js
+$NODE "$ROOT_DIR/javascript/test.js"
 
 echo "--> Testing Lua with lau..."
-/usr/bin/lua /root/sandbox/lang/lua/test.lua
+$LUA "$ROOT_DIR/lua/test.lua"
 echo "--> Testing Lua with luac..."
-/usr/bin/luac -o /root/sandbox/lang/lua/test.luac /root/sandbox/lang/lua/test.lua
-/usr/bin/lua /root/sandbox/lang/lua/test.luac
+$LUAC -o "$ROOT_DIR/lua/test.luac" "$ROOT_DIR/lua/test.lua"
+$LUA "$ROOT_DIR/lua/test.luac"
 
 echo "--> Testing OCaml with ocamlc..."
-/usr/bin/ocamlc -o /root/sandbox/lang/ocaml/test /root/sandbox/lang/ocaml/test.ml
-/root/sandbox/lang/ocaml/test
+$OCAMLC -o "$ROOT_DIR/ocaml/test" "$ROOT_DIR/ocaml/test.ml"
+"$ROOT_DIR/ocaml/test"
 
 echo "-> with ocaml..."
-/usr/bin/ocaml /root/sandbox/lang/ocaml/test.ml
+$OCAML "$ROOT_DIR/ocaml/test.ml"
 
 echo "--> Testing Perl..."
-/usr/bin/perl /root/sandbox/lang/perl/test.pl
+$PERL "$ROOT_DIR/perl/test.pl"
 
 echo "--> Testing PHP with PHP 5.6.4..."
-/usr/bin/php /root/sandbox/lang/php/test.php
+$PHP "$ROOT_DIR/php/test.php"
 echo "--> Testing PHP with HHVM..."
-/usr/bin/hhvm /root/sandbox/lang/php/test.php
+$HHVM "$ROOT_DIR/php/test.php"
 
 echo "--> Testing Python 2.7.9..."
-/usr/bin/python /root/sandbox/lang/python/test.py
+$PYTHON "$ROOT_DIR/python/test.py"
 
 echo "--> Testing Python 3.4.3..."
-/usr/bin/python3 /root/sandbox/lang/python/test.py
+$PYTHON3 "$ROOT_DIR/python/test.py"
 
 echo "--> Testing Ruby 2.2.3..."
-/usr/bin/ruby /root/sandbox/lang/ruby/test.rb
+$RUBY "$ROOT_DIR/ruby/test.rb"
 
 echo "--> Testing Rust with rustc..."
-cd /root/sandbox/lang/rust/
-/usr/local/bin/rustc /root/sandbox/lang/rust/test.rs
-/root/sandbox/lang/rust/test
-cd /root/sandbox/lang/
+cd "$ROOT_DIR/rust/"
+$RUSTC "$ROOT_DIR/rust/test.rs"
+"$ROOT_DIR/rust/test"
+cd "$ROOT_DIR"
 
 echo "--> Testing Scala..."
-cd /root/sandbox/lang/scala/
-/root/sandbox/lang/scala/scala-2.11.7/bin/scalac Test.scala
-/root/sandbox/lang/scala/scala-2.11.7/bin/scala Test
+cd "$ROOT_DIR/scala/"
+$SCALAC Test.scala
+$SCALA Test
 
 
 echo "DONE!"
